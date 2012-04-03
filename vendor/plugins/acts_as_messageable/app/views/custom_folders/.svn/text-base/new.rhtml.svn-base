@@ -1,0 +1,9 @@
+<b>New Custom Folder</b>
+<% form_for [current_user, @custom_folder] do |form|%>
+  <%= form.error_messages%>
+  <p><label for="custom_folder_title">Title</label> :
+    <%= form.text_field 'name'  %></p>
+  <%= submit_tag "Create" %>
+<% end %>
+
+<%= link_to 'Back', list_user_custom_folders_path(current_user) %>

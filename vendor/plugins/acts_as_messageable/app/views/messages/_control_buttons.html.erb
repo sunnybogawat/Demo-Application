@@ -1,0 +1,10 @@
+<%=
+if @conversation.trashed?
+  render :partial => 'messages/trashed_control_buttons.html.erb'
+elsif @conversation.is_draft_conversation?
+  render :partial => 'messages/draft_control_buttons.html.erb'
+else
+  render :partial => 'messages/sent_received_control_buttons.html.erb'
+end
+%>
+<br/>

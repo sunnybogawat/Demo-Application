@@ -1,0 +1,2 @@
+<%= link_to "Create your Template", new_user_custom_template_path(current_user) -%> <br />
+<%= link_to "Custom templates", list_user_custom_templates_path(current_user) if !@message_box.templates.empty?-%><br/><br />

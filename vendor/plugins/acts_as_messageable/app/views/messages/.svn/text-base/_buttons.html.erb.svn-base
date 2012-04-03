@@ -1,0 +1,6 @@
+<div>
+  <input type="submit" class="button" value="Send" /> &nbsp; | &nbsp;
+  <input type="button" class="button" value="Cancel" onclick="send_request(this.form,'/users/<%=current_user.id %>/messages/cancel')" />
+  <% msg_id = @message.saved_as_draft? ? @message.id : 'new' %>
+  <input type="button" class="button" value="Save" onclick="save_draft('<%= msg_id %>',<%= current_user.id %>)" />
+</div>

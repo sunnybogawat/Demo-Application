@@ -1,0 +1,30 @@
+<div id="custom_template-list">
+  <h1>Custom Template Listing</h1>
+  <table style="border: 1px solid silver;">
+     <tr>
+       <th>Category</th>
+       <th>Subject</th>
+       <th>Body</th>
+       <th>Actions</th>
+     </tr>
+    <% @custom_templates.each do |custom_template| %>
+      <tr>
+        <td>
+          <%= h(custom_template.template_category.name) %></td>
+        <td><span><%= h(custom_template.subject) %></span></td>
+        <td><%= h(truncate(custom_template.body, 80)) %></td>
+        <td>
+          <%= link_to 'Send',  user_custom_template_path(current_user,custom_template) %>
+          <%= link_to 'Edit', edit_user_custom_template_path(current_user,custom_template) %>
+          <%= link_to 'Destroy', user_custom_template_path(current_user,custom_template),
+            :confirm => "Are you sure?",
+            :method  => :delete %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+<br />
+<br />
+<%= link_to 'New template', new_user_custom_template_path %>
+<%= will_paginate @custom_templates  %>

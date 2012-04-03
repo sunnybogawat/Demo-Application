@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title></title>
+  <head id="ctl00_Head1">
+    <%= stylesheet_link_tag 'ff' -%>
+    <%= include_tiny_mce_if_needed %>
+    <%= javascript_include_tag :defaults, 'messages' %>
+    <%= csrf_meta_tag %>
+    <%= include_tiny_mce_if_needed %>
+
+  </head>
+  <body>
+    <div id="main">
+      <%= render :partial => 'messages/header' -%>
+      <div id="msg_main">
+        <%= render :partial => 'messages/left' -%>
+        <div id="msg_right">
+          <%= yield  %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

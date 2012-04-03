@@ -1,0 +1,2 @@
+<%= link_to "Create default Template", new_default_template_path -%> <br/>
+<%= link_to "Default templates", list_default_templates_path -%><br/><br/>

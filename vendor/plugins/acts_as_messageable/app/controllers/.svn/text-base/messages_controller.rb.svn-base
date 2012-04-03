@@ -1,0 +1,366 @@
+class MessagesController < ApplicationController
+  require 'common_methods.rb'
+  include CommonMethods
+  layout "messages"
+  uses_tiny_mce 
+
+  before_filter :check_configurations, :setup_message_box
+
+  def index #TODO check when will paginate plugin is commited
+    @conversations = @message_box.conversations_in_folder(session[:folder], {:sort => session[:sort], :page => params[:page]})
+    #    @conversations = conversations.paginate(:page => options[:page], :per_page => self.messages_per_page)
+    unless @conversations
+      flash[:error] = "Messages not found!"
+    end
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
+  def compose
+    action = params[:as]
+    conversation = @message_box.conversations.find(params[:id]) rescue nil
+    if conversation && action
+      message = conversation.message
+      @message = @message_box.compose_message_for_action(action, message)
+    else
+      @message = @message_box.compose_message
+    end
+    @users = User.possible_recipients_for_message(@message)
+    @recipient_ids = @message.messageable_recipients.collect {|user| user.id}
+    respond_to do |format|
+      format.html {}
+    end
+  end
+
+  def post
+    @message = @message_box.draft_messages.find(params[:id]) rescue nil
+    @message.attributes = params[:message] if @message && params[:message]
+    @message = @message_box.compose_message(params[:message]) if @message.nil? &&
+      (Message::NEW == params[:id] ) && params[:message]
+    render_bad_request and return if @message.nil?
+    
+    @message.recipients = User.find_message_boxes_by_ids(params[:recipient_ids]) if params[:recipient_ids]
+    if @message.post
+      respond_to do |format|
+        format.html {redirect_to user_messages_path(current_user)}
+      end
+    else
+      flash[:error] = "Message sending failed!"
+      respond_to do |format|
+        format.html {render :action => :compose}
+      end
+    end
+  end
+
+  def create
+    @message = @message_box.compose_message(params[:message]) if params[:message]
+    @message.recipients = User.find_message_boxes_by_ids(params[:recipient_ids]) if @message && params[:recipient_ids]
+    render_bad_request and return if @message.nil?
+    
+    if @message.save_draft
+      respond_to do |format|
+        format.html {redirect_to user_messages_path(current_user)}
+      end
+    else
+      flash[:error] = "Message draft could not be saved!"
+      @users = User.possible_recipients_for_message(@message)
+      respond_to do |format|
+        format.html {render :action => :compose}
+      end
+    end
+  end
+  
+  def show
+    @conversation = @message_box.conversations.find(params[:id]) rescue nil
+    if @conversation && @conversation.mark_as_read
+      respond_to do |format|
+        format.html {}
+      end
+    else
+      flash[:error] = "Message not found!"
+      respond_to do |format|
+        format.html {redirect_to :back}
+      end
+    end
+  end
+  
+  def edit
+    @message = @message_box.draft_messages.find(params[:id]) rescue nil
+    if @message
+      @users = User.possible_recipients_for_message(@message)
+      @recipient_ids = @message.messageable_recipients.collect {|user| user.id}
+      respond_to do |format|
+        format.html {render :action => 'compose'}
+      end
+    else
+      flash[:error] = "Message not found!"
+    end
+  end
+  
+  def update
+    @message = @message_box.draft_messages.find(params[:id]) rescue nil
+    if @message
+      @message.recipients = User.find_message_boxes_by_ids(params[:recipient_ids]) if params[:recipient_ids]
+      if @message.save_draft(params[:message])
+        respond_to do |format|
+          format.html {redirect_to user_message_path(current_user,
+              @message.draft_conversation.id, :folder => session[:folder])}
+        end
+      else
+        flash[:error] = "Message draft could not be saved!"
+        respond_to do |format|
+          format.html {render :action => :edit}
+        end
+      end
+    else
+      flash[:error] = "Message not found!"
+      respond_to do |format|
+        format.html {render :action => :edit}
+      end
+    end
+  end
+  
+  def destroy
+    in_trash = PluginConstants::TRASH == session[:folder]
+    request_for_single = ('delete' != params[:id] && !params[:conv_ids])
+    request_for_multiple = ('delete' == params[:id] && !!params[:conv_ids])
+
+    render_bad_request and return unless in_trash && (request_for_single || request_for_multiple)
+    destroy_single_conversation(params[:id]) if request_for_single
+    destroy_multiple_conversations(params[:conv_ids]) if request_for_multiple
+  end
+
+  def trash
+    render_bad_request and return unless PluginConstants::TRASH != session[:folder] && (params[:id] || params[:conv_ids])
+    trash_single_conversation(params[:id]) if params[:id]
+    trash_multiple_conversations(params[:conv_ids]) if params[:conv_ids]
+  end
+
+  def empty_trash
+    failed = @message_box.empty_trash
+    if failed.empty?
+      flash[:info] = "Trash emptied."
+    else
+      flash[:error] = "Unable to empty Trash!"
+    end
+    respond_to do |format|
+      format.html {redirect_to :back}
+    end
+  end
+
+  def restore
+    render_bad_request unless PluginConstants::TRASH == session[:folder] && (params[:id] || params[:conv_ids])
+    restore_single_conversation(params[:id]) if params[:id]
+    restore_multiple_conversations(params[:conv_ids]) if params[:conv_ids]
+  end
+
+  def mark
+    render_bad_request and return unless params[:as] && (params[:id] || params[:conv_ids])
+    mark_single_conversation(params[:id], params[:as]) if params[:id]
+    mark_multiple_conversations(params[:conv_ids], params[:as]) unless params[:conv_ids].empty?
+    respond_to do |format|
+      format.html { redirect_to :back }
+    end
+  end
+
+  def move
+    render_bad_request and return unless params[:to] && (params[:id] || params[:conv_ids])
+    if @message_box.can_access_folder?(params[:to])
+      move_single_conversation(params[:id], params[:to]) if params[:id]
+      move_multiple_conversations(params[:conv_ids], params[:to]) if params[:conv_ids]
+    else
+      flash[:error] = "Folder '#{folder.capitalize}' not found"
+    end
+  end
+
+  def update_per_page
+    @message_box.update_attribute(:messages_per_page, params[:val]) if params[:val] &&
+      params[:val] != @message_box.messages_per_page
+    redirect_to user_messages_path(current_user)
+  end
+
+  private
+  
+
+  def render_bad_request
+    render :text => "BAD REQUEST!"
+  end
+  
+  
+
+  def trash_single_conversation(id)
+    conversation = @message_box.conversations.find(id,
+      :conditions => {:trashed => false}) rescue nil
+
+    if conversation
+      if conversation.trash
+        respond_to do |format|
+          flash[:info] = "Message sent to trash."
+          format.html { redirect_to user_messages_path(current_user) }
+        end
+        return
+      else
+        flash[:error] = "Message could not be trashed!"
+      end
+    else
+      flash[:error] = "Message not found!"
+    end
+
+    respond_to do |format|
+      format.html { redirect_to :back }
+    end
+  end
+
+  def trash_multiple_conversations(ids)
+    invalid_ids, invalid_action_ids = @message_box.trash_conversations(ids,
+      :conditions => {:trashed => true})
+    if invalid_ids.empty? && invalid_action_ids.empty?
+      flash[:info] = "Trashed selected message(s)."
+    else
+      flash[:info] = "Could not trash some of the selected messages."
+    end
+    
+    respond_to do |format|
+      format.html { redirect_to :back }
+    end
+  end
+
+  def restore_single_conversation(id)
+    conversation = @message_box.conversations.find(id,
+      :conditions => {:trashed => true}) rescue nil
+    
+    if conversation
+      if conversation.restore
+        respond_to do |format|
+          flash[:info] = "Message restored to original folder."
+          format.html { redirect_to user_messages_path(current_user) }
+        end
+        return
+      else
+        flash[:error] = "Message could not be restored!"
+      end
+    else
+      flash[:error] = "Message not found!"
+    end
+
+    respond_to do |format|
+      format.html { redirect_to :back }
+    end
+  end
+
+  def restore_multiple_conversations(ids)
+    invalid_ids, invalid_action_ids = @message_box.restore_trashed(ids,
+      :conditions => {:trashed => true})
+    if invalid_ids.empty? && invalid_action_ids.empty?
+      flash[:info] = "Restored selected message(s)."
+    else
+      flash[:error] = "Could not restore some of the selected messages."
+    end
+    
+    respond_to do |format|
+      format.html { redirect_to :back }
+    end
+  end
+
+  def mark_single_conversation(id, action)
+    method = "mark_as_#{action}"
+    conversation = @message_box.conversations.find(id) rescue nil
+    if conversation
+      if conversation.respond_to?(method) && if conversation.send(method)
+          #        conversation.send(method)
+          flash[:info] = "Marked selected message(s) as #{action.capitalize}."
+        else
+          flash[:error] = "Invalid Action!"
+        end
+      else
+        flash[:error] = "Message not found!"
+      end
+    end
+  end
+  
+  def mark_multiple_conversations(conv_ids, action)
+    method = "mark_conversations_as_#{action}"
+    if @message_box.respond_to?(method)
+      invalid_ids = @message_box.send(method, conv_ids) unless conv_ids.empty?
+      if invalid_ids.empty?
+        flash[:info] = "Marked selected message(s) as #{action.capitalize}."
+      else
+        flash[:error] = "Could not mark some of the messages as #{action.capitalize}"
+      end
+    else
+      flash[:error] = "Invalid Action!"
+    end
+  end
+
+  def move_single_conversation(id, folder)
+    conversation = @message_box.conversations.find(id) rescue nil
+    if conversation
+      if conversation.move_to(folder)
+        flash[:info] = "Message moved to #{folder.capitalize}"
+        respond_to do |format|
+          format.html { redirect_to user_messages_path(current_user) }
+        end
+        return
+      else
+        flash[:error] = "Message could not be moved!"
+      end
+    else
+      flash[:error] = "Message not found!"
+    end
+    
+    respond_to do |format|
+      format.html { redirect_to :back }
+    end
+  end
+
+  def move_multiple_conversations(conv_ids, folder)
+    invalid_ids, invalid_action_ids = @message_box.move_conversations_to_folder(conv_ids, folder)
+    if invalid_ids.empty? && invalid_action_ids.empty?
+      flash[:info] = "Moved selected message(s) to #{folder}."
+    else
+      flash[:error] = "Could not move some of the messages!"
+    end
+
+    respond_to do |format|
+      format.html { redirect_to user_messages_path(current_user) }
+    end
+  end
+
+  def destroy_single_conversation(id)
+    conversation = @message_box.conversations.find(id) rescue nil
+    if conversation
+      deleted = conversation.trashed? ? conversation.destroy : conversation.trash
+      if deleted
+        flash[:info] = "Message deleted successfully."
+        respond_to do |format|
+          format.html {redirect_to user_messages_path(current_user)}
+        end
+        return
+      else
+        flash[:error] = "Message could not be deleted!"
+      end
+    else
+      flash[:error] = "Message not found!"
+    end
+
+    respond_to do |format|
+      format.html {redirect_to :back}
+    end
+  end
+
+  def destroy_multiple_conversations(ids)
+    if MessageConversation.delete_all(["id in (?) and trashed = 1 and user_id = ?", ids, @message_box.id])
+      flash[:info] = "Selected message(s) deleted."
+    else
+      flash[:error] = "Could not delete selected message(s)!"
+    end
+
+    respond_to do |format|
+      format.html { redirect_to user_messages_path(current_user) }
+    end
+  end
+  
+   
+end

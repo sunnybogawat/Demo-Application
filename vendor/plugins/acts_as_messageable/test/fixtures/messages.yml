@@ -1,0 +1,53 @@
+draft_with_recpts:
+    subject: 'Test message one'
+    body: 'this is a test message'
+    sender: user_1
+    status: 0
+    recipients: user_2, user_3, user_4
+
+already_sent:
+    subject: 'Test message two'
+    body: 'this is a test message'
+    sender: user_2
+    status: 1
+    recipients: user_1, user_4
+
+sent_wo_recpts:
+    subject: 'Test message three'
+    body: 'this is a test message'
+    sender: user_3
+    status: 1
+
+draft_wo_recpts:
+    subject: 'Test message four'
+    body: 'this is a test message'
+    sender: user_2
+    status: 0
+
+draft_with_recpts_2:
+    subject: 'Test message five'
+    body: 'this is a test message'
+    sender: user_4
+    status: 0
+    recipients: user_1, user_2, user_3
+
+already_sent_2:
+    subject: 'Test message six'
+    body: 'this is a test message'
+    sender: user_1
+    status: 1
+    recipients: user_2, user_3, user_4
+
+already_sent_3:
+    subject: 'Test message seven'
+    body: 'this is a test message'
+    sender: user_2
+    status: 1
+    recipients: user_1, user_3, user_4
+
+already_sent_4:
+    subject: 'Test message eight'
+    body: 'this is a test message'
+    sender: user_3
+    status: 1
+    recipients: user_1, user_2

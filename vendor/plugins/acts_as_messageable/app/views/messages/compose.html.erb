@@ -1,0 +1,7 @@
+<%= error_messages_for_message @message %>
+<%= form_for :message, :url=> new_message_path(current_user), :html => {:id => 'compose', :method => :post} do |f| %>
+  <%= render :partial => "/messages/buttons.html.erb" %>
+  <%= render :partial => "/messages/message.html.erb" , :locals => {:f => f}  %>
+  <%= render :partial => "/messages/buttons.html.erb"  %>
+  <input type="hidden" value="" name="_method" />
+<% end %>

@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/app/views/default_templates
+END
+list.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/app/views/default_templates/list.rhtml
+END
+show.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/app/views/default_templates/show.rhtml
+END
+_form.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/app/views/default_templates/_form.rhtml
+END
+edit.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/app/views/default_templates/edit.rhtml
+END
+new.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/app/views/default_templates/new.rhtml
+END

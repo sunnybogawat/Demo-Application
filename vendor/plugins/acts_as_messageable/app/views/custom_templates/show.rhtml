@@ -1,0 +1,4 @@
+<h1>Send Custom template</h1>
+<%= link_to 'Edit', edit_user_custom_template_path(current_user,@custom_template) %> |
+<%= link_to 'Back', list_user_custom_templates_path(current_user) %>
+<%= render :file => "/messages/compose.html.erb" -%>

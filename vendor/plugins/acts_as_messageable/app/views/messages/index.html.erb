@@ -1,0 +1,56 @@
+<%= render :partial => 'messages/right_header' -%>
+<div id="msg_scrolls">
+    <div id="msg_window">
+
+<%#*<div id="list_header" style="float:left; width:100%;">%>
+<%#*<div class="msg_button" style="width:24%;">%>
+<%#*From%>
+<%#*</div>%>
+<%#*<div class="msg_button" style="width:50%;">%>
+<%#*Subject%>
+<%#*</div>%>
+<%#*<div class="msg_button" style="width:20%;">%>
+<%#*Received%>
+<%#*</div>%>
+<%#*</div>%>
+
+        <div id="list_body" style="float:left; width:100%;">
+            <% form_tag '', :method => :post, :id => "bulk_actions_form" do %>
+                <input type="hidden" value="" name="_method" />
+
+                <table id="msg_list">
+                    <tbody>
+                        <tr id="list_header">
+                            <th class="msg_list_header">&nbsp;</th>
+                            <th class="msg_list_header">&nbsp;</th>
+                            <th class="msg_list_header" style="width:22%;"><%= sort_link('From') %></th>
+                            <th class="msg_list_header" style="width:60%;"><%= sort_link('Subject') %></th>
+                            <th class="msg_list_header"><%= sort_link('Received') %></th>
+                        </tr>
+
+                        <% for rec in @conversations %>
+                            <% msg_class = 0 == rec.read ? "messages-list-unread-contents" : "messages-list-contents" %>
+                            <% action = 'show' %>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td><%= check_box_tag 'conv_ids[]', rec.id %></td>
+                                <td>
+                                     <%= name_link_helper rec.message.sender_id, rec.id, action %>
+                                </td>
+
+                                <td><%= subject_link_helper rec.message.subject, rec.id, action %></td>
+
+                                <td><%= link_to rec.message.created_at.strftime("%d %b %y %I:%M %p"), :action => action, :id => rec.id %></td>
+                            </tr>
+                        <% end %>
+
+                    </tbody>
+                </table>
+
+
+                <br/>
+            <% end %>
+        </div>
+    </div>
+</div>
+<%= render :partial => 'messages/right_footer' -%>

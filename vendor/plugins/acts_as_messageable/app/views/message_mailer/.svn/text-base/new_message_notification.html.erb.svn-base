@@ -1,0 +1,9 @@
+
+Hi <b><%= @recipient.name %></b>,<br/>
+
+<%= @sender.name %> (<%= @sender.email %>)has sent message to you. <br/>
+<%#*To check message click here:<br/>%>
+<%#= @url %>
+
+Regards,<br/>
+<b>Admin</b>

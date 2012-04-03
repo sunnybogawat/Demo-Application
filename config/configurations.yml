@@ -1,0 +1,6 @@
+messages:
+  flags: 1
+  priority: 1
+  default_templates : 1
+  custom_templates : 1
+  custom_folders : 1

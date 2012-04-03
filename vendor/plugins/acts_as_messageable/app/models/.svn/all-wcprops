@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/app/models
+END
+message_mailer.rb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/app/models/message_mailer.rb
+END
+message_conversation.rb
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/app/models/message_conversation.rb
+END
+default_folder.rb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/app/models/default_folder.rb
+END
+default_template.rb
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/app/models/default_template.rb
+END
+message_folder.rb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/app/models/message_folder.rb
+END
+message_template.rb
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/app/models/message_template.rb
+END
+quick_message.rb
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/app/models/quick_message.rb
+END
+message.rb
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/app/models/message.rb
+END
+custom_folder.rb
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/app/models/custom_folder.rb
+END
+custom_template.rb
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/app/models/custom_template.rb
+END
+template_category.rb
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/app/models/template_category.rb
+END
+message_box.rb
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/app/models/message_box.rb
+END

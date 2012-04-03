@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/app/controllers
+END
+default_templates_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/app/controllers/default_templates_controller.rb
+END
+messages_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/app/controllers/messages_controller.rb
+END
+custom_folders_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/app/controllers/custom_folders_controller.rb
+END
+custom_templates_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/app/controllers/custom_templates_controller.rb
+END

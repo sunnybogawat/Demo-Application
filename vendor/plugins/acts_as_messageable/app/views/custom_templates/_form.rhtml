@@ -1,0 +1,10 @@
+<%= form.error_messages%>
+
+<p><label for="default_template_title">Category</label> :
+  <%= form.select "category_id",TemplateCategory.all.collect {|p| [ p.name, p.id ] }  %></p>
+
+<p><label for="default_template_title">Subject</label> :
+<%= form.text_field 'subject'  %></p>
+
+<p><label for="default_template_description">message</label> :
+<%= form.text_area 'body'  %></p>

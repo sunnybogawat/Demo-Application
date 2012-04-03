@@ -1,0 +1,38 @@
+= acts_as_messageable
+A plugin which implement simple messaging system
+
+=Usage
+
+#Put 'acts_as_messageable' in the model you wish to make messageable
+ This will provide the model with the interface and APIs exposed by the plug-in.
+
+
+#Run the 'acts_as_messageable_migrations' generator.This will create the migration files in db/migrate folder
+ rails generate acts_as_messageable_migrations
+ Options : --skip-migrations: for skiping migrations
+
+
+#Run rake db:migrate to run the migration files and generate the database schema
+
+
+#Run the 'message_box_users' generator as shown below to populate associated records for message-able models
+ rails generate message_boxes <one or more models separated by space>
+ Options : --skip-css-js: option for skipping jvascripts and css files
+ Note : do this only if you have data for the model you wish to make message-able, so that every record of your model will be alloted a message_box
+
+
+#To populate initial data run
+ rails runner <rails_root>\vendor\plugins\acts_as_messageable\lib\populate_data.rb
+
+=Dependencies
+
+#This plugin is dependent on willpaginate plugin/gem.
+ Download willpaginate plugin from https://github.com/mislav/will_paginate/archives/v3.0.pre2
+
+#This plugin is dependent on tiny_mce plugin/gem.
+ Download tiny_mce  plugin from https://github.com/kete/tiny_mce.git
+
+#This will expect a current_user method in your application
+
+
+#released under the MIT license | Copyright (c) 2010

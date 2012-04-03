@@ -1,0 +1,18 @@
+<div class="tab1">
+    <div class="left">
+        <div class="msg_button">
+            <%= bulk_restore_button if PluginConstants::TRASH == session[:folder] %>
+        </div>
+        <div class="msg_button">
+            <%= bulk_delete_button %>
+        </div>
+        &nbsp;
+        <div class="msg_button">
+            <%= bulk_actions_selection %>
+        </div>
+    </div>
+    <div class="right">
+<% #TODO Add pagination link to this %>
+        <%= per_page_selection %> &nbsp;|&nbsp; <%#= pagination_links %>
+    </div>
+</div>

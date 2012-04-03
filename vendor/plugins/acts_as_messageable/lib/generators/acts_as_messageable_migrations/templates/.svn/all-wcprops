@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/lib/generators/acts_as_messageable_migrations/templates
+END
+create_template_categories.rb
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/lib/generators/acts_as_messageable_migrations/templates/create_template_categories.rb
+END
+create_message_conversations.rb
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/lib/generators/acts_as_messageable_migrations/templates/create_message_conversations.rb
+END
+create_default_templates.rb
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/lib/generators/acts_as_messageable_migrations/templates/create_default_templates.rb
+END
+create_message_folders.rb
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/lib/generators/acts_as_messageable_migrations/templates/create_message_folders.rb
+END
+create_message_templates.rb
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/lib/generators/acts_as_messageable_migrations/templates/create_message_templates.rb
+END
+create_quick_messages.rb
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/lib/generators/acts_as_messageable_migrations/templates/create_quick_messages.rb
+END
+create_message_boxes.rb
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/lib/generators/acts_as_messageable_migrations/templates/create_message_boxes.rb
+END
+create_messages.rb
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/lib/generators/acts_as_messageable_migrations/templates/create_messages.rb
+END
+create_message_recipients.rb
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/lib/generators/acts_as_messageable_migrations/templates/create_message_recipients.rb
+END

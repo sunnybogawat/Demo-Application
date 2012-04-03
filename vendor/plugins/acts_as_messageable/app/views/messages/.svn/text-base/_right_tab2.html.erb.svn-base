@@ -1,0 +1,9 @@
+<div class="tab2">
+    <div class="left">
+        <%= raw message_selection_links %>
+    </div>
+    <div class="right">
+        &nbsp;
+        <%= refresh_link %>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/test/unit
+END
+message_conversation_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/test/unit/message_conversation_test.rb
+END
+message_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/test/unit/message_test.rb
+END
+acts_as_messageable_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/test/unit/acts_as_messageable_test.rb
+END
+message_box_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/test/unit/message_box_test.rb
+END

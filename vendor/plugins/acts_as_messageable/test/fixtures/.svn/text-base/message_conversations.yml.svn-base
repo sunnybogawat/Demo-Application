@@ -1,0 +1,102 @@
+conv_1:
+    message: draft_with_recpts
+    user: user_1
+    folder: drafts
+    read: true
+
+conv_2:
+    message: already_sent
+    user: user_2
+    folder: sentbox
+    read: true
+    flag: 2
+
+conv_3:
+    message: already_sent
+    user: user_1
+    folder: inbox
+
+conv_4:
+    message: already_sent
+    user: user_4
+    folder: inbox
+    flag: 1
+
+conv_5:
+    message: draft_wo_recpts
+    user: user_2
+    folder: drafts
+    read: true
+
+conv_6:
+    message: draft_with_recpts_2
+    user: user_4
+    folder: drafts
+    trashed: true
+    read: true
+
+conv_7:
+    message: already_sent_2
+    user: user_1
+    folder: sentbox
+    read: true
+
+conv_8:
+    message: already_sent_2
+    user: user_2
+    folder: custom_2
+    read: true
+
+conv_9:
+    message: already_sent_2
+    user: user_3
+    folder: inbox
+
+conv_10:
+    message: already_sent_2
+    user: user_4
+    folder: inbox
+    trashed: true
+
+conv_11:
+    message: already_sent_3
+    user: user_2
+    folder: sentbox
+    trashed: true
+    read: true
+
+conv_12:
+    message: already_sent_3
+    user: user_1
+    folder: inbox
+
+conv_13:
+    message: already_sent_3
+    user: user_3
+    folder: inbox
+
+conv_14:
+    message: already_sent_3
+    user: user_4
+    folder: inbox
+
+conv_15:
+    message: already_sent_4
+    user: user_3
+    folder: sentbox
+    trashed: true
+    flag: 1
+
+conv_16:
+    message: already_sent_4
+    user: user_1
+    folder: inbox
+    trashed: true
+    flag: 1
+
+conv_17:
+    message: already_sent_4
+    user: user_2
+    folder: inbox
+    trashed: true
+    flag: 1

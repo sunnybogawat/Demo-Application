@@ -1,0 +1,25 @@
+<div class="new_message_label">To
+    <span class="pms-narrative-text">select user(s) from list.</span>
+</div>
+<div class="new_message_field">
+    <% options = @users.collect {|p| [ p.first_name.capitalize + ' '+ p.last_name.capitalize + '('+ p.email + ')', p.id ] }%>
+    <%= select_tag('recipient_ids', options_for_select(options, @recipient_ids),
+        {:multiple => true, :size => 5, :style => "width:400px"})  %>
+
+</div>
+
+<div class="new_message_label">Subject</div>
+<div class="new_message_field">
+    <%= f.text_field :subject, :size => "70" %>
+</div>
+<div class="new_message_label">Message</div>
+<div class="new_message_field">
+    <%= text_area("message", "body", :class => 'mceEditor')%>
+</div>
+<% if @configurations['messages']['priority'] == 1  %>
+<div class="new_message_label">Priority</div>
+<div class="new_message_field">
+   <%= select_box_for_priorities -%>
+</div>
+<% end %>
+<br/>

@@ -1,0 +1,8 @@
+<div style="float:left;margin:2px;">
+  <%= button_to 'Delete', user_message_path(current_user.id, @conversation.id),
+    :method => :delete %>
+</div>
+<div style="float:left;margin:2px;">
+  <%= button_to 'Restore', restore_user_message_path(current_user.id, @conversation.id),
+    :method=>:put %>
+</div>

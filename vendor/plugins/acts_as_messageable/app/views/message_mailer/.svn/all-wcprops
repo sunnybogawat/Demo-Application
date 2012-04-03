@@ -1,0 +1,11 @@
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/app/views/message_mailer
+END
+new_message_notification.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/app/views/message_mailer/new_message_notification.html.erb
+END

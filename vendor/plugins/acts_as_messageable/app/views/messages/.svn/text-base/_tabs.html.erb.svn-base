@@ -1,0 +1,18 @@
+<ul>
+  <li class="<%= 'selected_tab' if ('new' == params[:action])%>">
+    <%= link_to "New Message",compose_user_messages_path(current_user.id) %>
+  </li>
+  <li class="<%= 'selected_tab' if (params[:folder] && 'Inbox' == params[:type])%>">
+    <%= link_to "Inbox", user_messages_path(current_user.id ,{ :folder => 'Inbox'})  %>(<b><%= @new_messages_count %></b>)
+  </li>
+  <li class="<%= 'selected_tab' if (params[:folder] && 'Sent Items' == params[:type])%>">
+    <%= link_to "Sent", user_messages_path(current_user.id ,{ :folder =>  'Sent'}) %>
+  </li>
+  <li class="<%= 'selected_tab' if (params[:folder] && 'Drafts' == params[:type])%>">
+    <%= link_to "Drafts", user_messages_path(current_user.id ,{ :folder => 'Drafts'}) %>(<b><%= @drafts_count %></b>)
+  </li>
+  <li class="<%= 'selected_tab' if (params[:folder] && 'Trash' == params[:type])%>">
+    <%= link_to "Trash", user_messages_path(current_user.id ,{ :folder => 'Trash'}) %>(<b><%= @trash_count %></b>)
+    | <%= link_to "Empty", empty_trash_user_messages_path(current_user.id), :method => :delete %>
+  </li>
+</ul>

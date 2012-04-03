@@ -1,0 +1,12 @@
+<% if false #current_user.is_admin?  %>
+  <h1>Custom template details</h1>
+  <p>title : <%= h(@default_tamplate.title) %></p>
+  <p>Body: <%= h(@default_tamplate.message) %></p>
+  <br/>
+  <br/>
+<% else %>
+  <%= 'here'  %>
+  <%= render :file => "/messages/compose.html.erb" -%>
+<% end %>
+<%= link_to 'Edit', edit_default_template_path(@default_tamplate) %> |
+<%= link_to 'Back', list_default_templates_path %>

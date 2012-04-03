@@ -1,0 +1,18 @@
+user_1:
+  messageable: duser_1 (DummyUser)
+  messages_per_page: 5
+  email_notification: true
+
+user_2:
+  messageable: duser_2 (DummyUser)
+  messages_per_page: 20
+  email_notification: true
+
+user_3:
+  messageable: duser_3 (DummyUser)
+  email_notification: false
+
+user_4:
+  messageable: duser_4 (DummyUser)
+  messages_per_page: 3
+  email_notification: false

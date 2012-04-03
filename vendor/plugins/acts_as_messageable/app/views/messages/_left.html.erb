@@ -1,0 +1,23 @@
+<div id="msg_left">
+  <div class="<%= new_message_nav_class -%>">
+    <%= link_to "New Message",compose_user_messages_path(current_user.id) -%>
+  </div>
+  <div class="<%= default_folder_nav_class(:inbox) -%>">
+    <%= link_to "Inbox", user_messages_path(current_user.id ,{ :folder => @default_folders[:inbox]})  %>(<%= @new_messages_count -%>)
+  </div>
+  <div class="<%= default_folder_nav_class(:drafts) -%>">
+    <%= link_to "Drafts", user_messages_path(current_user.id ,{ :folder => @default_folders[:drafts]}) %>(<%= @drafts_count -%>)
+  </div>
+  <div class="<%= default_folder_nav_class(:sentbox) -%>">
+    <%= link_to "Sentbox", user_messages_path(current_user.id ,{ :folder =>  @default_folders[:sentbox]}) %>
+  </div>
+  <div class="<%= default_folder_nav_class(:trash) -%>">
+    <%= link_to "Trash", user_messages_path(current_user.id ,{ :folder => @default_folders[:trash]}) %>(<%= @trash_count -%>)
+    | <%= link_to "Empty", empty_trash_user_messages_path(current_user.id), :method => :delete %>
+  </div>
+  <% #TODO : Remove this lines if this features are not needed%>
+<%#= render :partial => "messages/custom_folders_navigation" if @configurations['messages']['custom_folders'] == 1 -%>
+<%#= render :partial => "messages/custom_templates_navigation" if @configurations['messages']['custom_templates'] == 1-%>
+<%#= render :partial => "messages/default_templates_navigation" if @configurations['messages']['default_templates'] == 1 -%>
+
+</div>

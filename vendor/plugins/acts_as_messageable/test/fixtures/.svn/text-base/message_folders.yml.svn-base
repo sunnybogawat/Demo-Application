@@ -1,0 +1,40 @@
+inbox:
+  type: DefaultFolder
+  name: inbox
+  status: 1
+
+sentbox:
+  type: DefaultFolder
+  name: sentbox
+  status: 2
+
+drafts:
+  type: DefaultFolder
+  name: drafts
+  status: 3
+
+trash:
+  type: DefaultFolder
+  name: trash
+  status: 0
+
+
+custom_1:
+  type: CustomFolder
+  name: Custom1
+  user: user_1
+
+custom_2:
+  type: CustomFolder
+  name: Custom2
+  user: user_2
+
+custom_3:
+  type: CustomFolder
+  name: Custom3
+  user: user_3
+
+custom_4:
+  type: CustomFolder
+  name: Custom4
+  user: user_4

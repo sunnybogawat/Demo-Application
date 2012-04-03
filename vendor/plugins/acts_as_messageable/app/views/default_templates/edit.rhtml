@@ -1,0 +1,8 @@
+<b>Edit Default template</b>
+<%= form_for @default_tamplate do |form|%>
+  <%= render :partial => 'form', :locals=>{:form => form} %>
+  <%= submit_tag 'Edit' %>
+<% end %>
+
+<%= link_to 'Show', default_template_path(@default_template) %> |
+<%= link_to 'Back', list_default_templates_path %>

@@ -1,0 +1,10 @@
+<b>Edit Custom Folder</b>
+<% form_for [current_user,@custom_folder] do |form|%>
+  <%= form.error_messages%>
+  <p><label for="custom_folder_title">Title</label> :
+    <%= form.text_field 'name'  %></p>
+  <%= submit_tag 'Edit' %>
+<% end %>
+
+<%#= link_to 'Show', user_custom_folder_path(current_user,@custom_folder) %> |
+<%= link_to 'Back', list_user_custom_folders_path(current_user) %>

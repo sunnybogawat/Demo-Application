@@ -1,0 +1,24 @@
+<div id="default_template-list">
+  <h1>Default Template Listing</h1>
+  <table>
+    <% @default_tamplates.each do |default_template| %>
+      <tr>
+        <td width="60%">
+          <span><%= h(default_template.title) %></span><br />
+          <%= h(truncate(default_template.message, 80)) %>
+        </td>
+        <td>
+          <%= link_to false ? 'Show' : 'Send', default_template_path(default_template) %><br/>
+          <%= link_to 'Edit', edit_default_template_path(default_template) %><br/>
+          <%= link_to 'Destroy', default_template_path(default_template),
+            :confirm => "Are you sure?",
+            :method  => :delete %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+<br />
+<br />
+<%= link_to 'New default_template', new_default_template_path %>
+<%= will_paginate @default_tamplates  %>

@@ -1,0 +1,70 @@
+<%= form_for :message, :url => perform_selected_operation_user_messages_path(current_user.id),
+  :html => {:id => "do_actions", :onsubmit => "return bulk_operation('do_actions');"} do |f| %>
+
+  <% unless @conversations.empty? %>
+    <%= submit_tag 'Delete' %>
+    | Actions <select name="actions" onchange="if(bulk_operation('do_actions')) document.getElementById('do_actions').submit();">
+      <option value=""> Select Operation</option>
+      <option value="mark_read"> Mark as Read</option>
+      <option value="mark_unread"> Mark as Unread</option>
+      <% if ['Inbox', 'Sent', 'Drafts'].include? session[:folder_name]  %>
+        <option value="Trash">Move to Trash</option>
+      <% end %>
+      <% if ['Trash'].include? session[:folder_name]  %>
+        <option value="Inbox">Move to Inbox</option
+        <option value="Sent">Move to Sent items</option
+        <option value="Drafts">Move to Drafts</option
+      <% end %>
+    </select>
+  <% end %>
+  <div class='pms-menu'>
+    <br/>
+    <ul class="messages-list">
+      <li class="check_box_class">
+        <input type="checkbox" value="0" id="select_all" onclick="select_deselect_all(this);" />
+      </li>
+      <li class="from_text_class">
+        <% if 'search' !=  params[:action] %>
+          <%= sort_link_helper session[:folder_name] != 'Inbox' ? "To" : "From", session[:folder_name] != 'Inbox' ?
+            "recepient_name" : "sender_name" %>
+        <% else %>
+          <span style="color:grey !important;"><%= session[:folder_name] != 'Inbox' ? "To" : "From" %></span>
+        <% end %>
+      </li>
+      <li class="subject_text_class" ><span style="color:grey !important;">Subject</span></li>
+      <li class="date_text_class">
+        <% if 'search' !=  params[:action] %>
+          <%= sort_link_helper 'Date', "date" %>
+        <% else %>
+          <span style="color:grey !important;">Date</span>
+        <% end %>
+      </li>
+      <li class="check_box_class" title="Flag"> ! </li>
+    </ul>
+
+    <% action = 'Drafts' == session[:folder_name] ? 'edit' :  'show'%>
+    <% for rec in @conversations %>
+      <% p rec %>
+      <% msg_class = 0 == rec.read ? "messages-list-unread-contents" : "messages-list-contents" %>
+      <% action = DefaultFolder.drafts.id == rec.folder_id ? 'edit' :  'show'%>
+      <ul class="<%= msg_class %>">
+        <li class="check_box_class">
+          <%= check_box_tag 'select['+ rec.id.to_s + ']', rec.id%></li>
+        <li class="from_text_class">
+          <%  id = session[:folder_name] != 'Inbox' ? rec.user_id : rec.sender_id%>
+          <%= name_link_helper id, rec.id, action %>
+        </li>
+        <li class="subject_text_class">
+          <% subject = rec.message.subject %>
+          <%= subject_link_helper subject.to_s, rec.id, action %>
+        </li>
+        <li class="date_text_class">
+          <%= link_to rec.message.created_at.strftime("%d %b %y %I:%M %p"),
+            :action => action, :id => rec.id %>
+        </li>
+        <li class="check_box_class"> <%= render_flag_icon record -%>  </li>
+      </ul>
+    <% end %>
+  </div>
+  <br/>
+<% end %>

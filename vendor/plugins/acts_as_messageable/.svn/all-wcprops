@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/rubycoe/!svn/ver/4339/hub/acts_as_messageable
+END
+Rakefile
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/Rakefile
+END
+init.rb
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/init.rb
+END
+README.rtf
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/rubycoe/!svn/ver/4339/hub/acts_as_messageable/README.rtf
+END
+email
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/email
+END
+install.rb
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/install.rb
+END
+MIT-LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/MIT-LICENSE
+END
+uninstall.rb
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/uninstall.rb
+END

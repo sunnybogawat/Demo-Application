@@ -1,0 +1,28 @@
+<div id="custom_folder-list">
+  <h1>Custom folders Listing</h1>
+  <table style="border:1px solid silver">
+    <tr>
+      <th style="border-right: 1px solid silver;">Folder Name</th>
+      <th>Actions</th>
+    </tr>
+    <% @custom_folders.each do |custom_folder| %>
+      <tr>
+        <td width="60%" style="border-right: 1px solid silver;">
+          <span class="list-title"><%= h(custom_folder.name) %></span>
+        </td>
+        <td>
+          <%#= link_to 'Show', user_custom_folder_path(current_user,custom_folder) %>
+          <%= link_to 'Edit', edit_user_custom_folder_path(current_user,custom_folder) %>
+          <%= link_to 'Destroy', user_custom_folder_path(current_user,custom_folder),
+            :confirm => "Are you sure?",
+            :method  => :delete %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+<br />
+<br />
+
+<%= link_to 'New custom_folder', new_user_custom_folder_path(current_user) %>
+<%= will_paginate @custom_folders  %>

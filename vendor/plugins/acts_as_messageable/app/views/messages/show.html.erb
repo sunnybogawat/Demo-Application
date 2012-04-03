@@ -1,0 +1,25 @@
+<%= render :partial => "messages/control_buttons.html.erb" %>
+<br/>
+<br/>
+<% if @configurations['messages']['priority'] == 1  %>
+  <% priority = @conversation.message.priority
+  if priority.to_i > 0 %>
+    <br/><b>Priority : <%=  MessageConversation.priorities[priority.to_i] %></b><br/>
+  <% end %>
+<% end %>
+<% message = @conversation.message %>
+
+<b>Subject : </b>
+<% if message.subject.length > 60 %>
+  <b title="<%= message.subject %>">
+    <%= message.subject.slice(0...60) %></b>
+<% else %>
+  <b><%= message.subject %></b>
+<% end %>
+<br/>
+<b>From :</b><%= "#{@user.name} (#{@user.email})" %> <br/>
+<b>Sent : </b><%= message.created_at.strftime("%d %b %Y %I:%M %p") %>
+<br/>
+<b>To: </b><%= message.messageable_recipients.collect { |user| user.name }.join(', ') %>
+<hr/>
+<%= raw message.body %>

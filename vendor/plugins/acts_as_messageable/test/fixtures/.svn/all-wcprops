@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/test/fixtures
+END
+message_conversations.yml
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/test/fixtures/message_conversations.yml
+END
+message_folders.yml
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/test/fixtures/message_folders.yml
+END
+message_boxes.yml
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/test/fixtures/message_boxes.yml
+END
+messages.yml
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/test/fixtures/messages.yml
+END
+dummy_users.yml
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/rubycoe/!svn/ver/4319/hub/acts_as_messageable/test/fixtures/dummy_users.yml
+END

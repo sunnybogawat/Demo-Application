@@ -1,0 +1,6 @@
+<div>
+  <input type="submit" class="button" value="Send" /> &nbsp; | &nbsp;
+  <%= link_to 'Cancel', user_messages_path(current_user.id ,{ :folder => @default_folders[:inbox]}),:class=>'button' %>
+  <% msg_id = @message.saved_as_draft? ? @message.id : 'new' %>
+  <input type="button" class="button" value="Save" onclick="save_draft('<%= msg_id %>',<%= current_user.id %>)" />
+</div>

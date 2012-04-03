@@ -1,0 +1,12 @@
+<div style="float:left;margin:2px;">
+  <%= button_to 'Trash', trash_user_message_path(current_user.id, @conversation.id),
+    :method => :delete %>
+</div>
+<div style="float:left;margin:2px;">
+  <%= button_to 'Edit', edit_user_message_path(current_user.id, @conversation.message.id),:method => :get %>
+</div>
+
+<div style="float:left;margin:2px;">
+  <%= button_to 'Send', post_user_message_path(current_user.id, @conversation.message.id),
+    :method=>:put %>
+</div>  

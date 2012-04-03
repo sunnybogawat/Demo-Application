@@ -1,0 +1,16 @@
+<div style="float:left;margin:2px;">
+  <%= button_to 'Trash', trash_user_message_path(current_user.id, @conversation.id),
+    :method => :delete %>
+</div>
+<div style="float:left;margin:2px;">
+  <%= button_to 'Reply', '', :method => :get, :onclick => "return get('#{compose_user_messages_path(current_user.id,
+    :id => @conversation.id, :as => Message::REPLY)}');" %>
+</div>
+<div style="float:left;margin:2px;">
+  <%= button_to 'Reply All', '', :method => :get, :onclick => "return get('#{compose_user_messages_path(current_user.id,
+    :id => @conversation.id, :as => Message::REPLY_ALL)}');"  %>
+</div>
+<div style="float:left;margin:2px;">
+  <%= button_to 'Forward', '', :method => :get, :onclick => "return get('#{compose_user_messages_path(current_user.id,
+    :id => @conversation.id, :as => Message::FORWARD)}');" %>
+</div>
